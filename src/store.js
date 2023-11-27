@@ -14,7 +14,7 @@ function reducer(state = inititalState, action) {
         case "account/requestLoan":
             if (state.loan > 0)
                 return state
-            return { ...state, loan: action.payload }
+            return { ...state, loan: action.payload.amount, loanPurpose: action.payload.purpose }
         case "account/payLoan":
             return { ...state, loan: 0, loanPurpose: '', balance: state.balance - state.loan }
         default:
@@ -24,5 +24,21 @@ function reducer(state = inititalState, action) {
 
 const store = createStore(reducer);
 
-store.dispatch({ type: 'account/deposit', payload: 500 });
-store.dispatch({ type: 'account/withdraw', payload: 300 });
+function deposit(amount) {
+    return { type: 'account/deposit', payload: amount };
+};
+
+function withdraw(amount) {
+    return { type: 'account/withdraw', payload: amount };
+};
+
+function requestLoan(amount, purpose) {
+    return {
+        type: 'account/requestLoan',
+        payload: { amount, purpose }
+    };
+};
+
+function payLoan(amount) {
+    return { type: 'account/payLoan' };
+};
