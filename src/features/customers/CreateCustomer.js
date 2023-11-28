@@ -6,6 +6,7 @@ function Customer() {
   const [fullName, setFullName] = useState("");
   const [nationalId, setNationalId] = useState("");
   const dispatch = useDispatch();
+
   function handleClick() {
     if (!fullName || !nationalId) {
       return;
@@ -31,7 +32,7 @@ function Customer() {
             onChange={(e) => setNationalId(e.target.value)}
           />
         </div>
-        <button onClick={handleClick}> Create new customer </button>{" "}
+        <button onClick={handleClick}> Create new customer </button>
       </div>
     </div>
   );
